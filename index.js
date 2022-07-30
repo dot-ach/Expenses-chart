@@ -8,37 +8,20 @@ const getData = async (url) => {
   try {
     const dates = await getData('./data.json');
     const bar = document.getElementById('bar_mon');
-    // const 
-
+    console.log('bar before',bar);
+    const amount = document.getElementById('amount_mon')
     bar.addEventListener("mouseover", event => {
-      const container = document.getElementById('bar-container')
-      container.innerHTML = ''
-      console.log(container);
-      const amount = document.createElement('div');
-      const text = document.createTextNode(dates[0].amount);
-      amount.classList.add('amount');
-      amount.setAttribute('id', 'amount_mon');
-      amount.appendChild(text);
-      container.appendChild(amount);
-
-      const bar = document.createElement('div');
-      bar.classList.add('graph-bar_mon')
-      bar.setAttribute('id', 'bar_mon')
-      container.appendChild(bar);
-
-      const paragraph = document.createElement('p')
-      const textDay = document.createTextNode('mon')
-      paragraph.appendChild(textDay);
-
-      container.appendChild(paragraph);
+      event.stopPropagation();
+      console.log('ok')
+      amount.classList.remove('inactive');
     })
+
     bar.addEventListener('mouseout', event =>{
-      event.target.innerHTML = `<div class="graph-bar_container" id="bar-container">
-      <div class="graph-bar_mon" id="bar_mon"></div>
-      <p>mon</p>`
-      console.log(event.target);
+      // console.log(event);
+      event.stopPropagation();
+      amount.classList.add('inactive');
     })
-    console.log(dates[0].amount)
+    // console.log(dates[0].amount)
   } catch (error) {
     console.error(error);
   }

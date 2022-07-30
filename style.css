@@ -155,3 +155,6 @@
   color: var(--Medium-brown);
   font-size: 1.6rem;
 }
+.graph-bar_container .inactive{
+  display: none;
+}
